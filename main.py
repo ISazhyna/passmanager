@@ -1,9 +1,11 @@
 from tkinter import *
+import string
+import secrets
 
 # ---------------------------- PASSWORD GENERATOR ------------------------------- #
-def test():
-    text=went.get()
-    print(text)
+def generatepassword():
+    password=''.join(secrets.choice(string.ascii_letters+ string.digits) for _ in range(10))
+    print(password)
 # ---------------------------- SAVE PASSWORD ------------------------------- #
 
 # ---------------------------- UI SETUP ------------------------------- #
@@ -18,26 +20,27 @@ logo_img=PhotoImage(file="logo.png")
 canv.create_image(100, 100, image = logo_img)
 canv.grid(row=0, column=1)
 
-wlab=Label(text="Website: ")
-wlab.grid(row=1,column=0)
-went=Entry(width=35)
-went.grid(row=1, column=1,columnspan=2)
+weblab=Label(text="Website: ")
+weblab.grid(row=1, column=0)
+webent=Entry(width=35)
+webent.grid(row=1, column=1, columnspan=2)
 
-eulab=Label(text="Email/Username: ")
-eulab.grid(row=2,column=0)
-euent=Entry(width=35)
-euent.grid(row=2, column=1,columnspan=2)
+emailab=Label(text="Email/Username: ")
+emailab.grid(row=2, column=0)
+emailent=Entry(width=35)
+emailent.insert(0, "email@gmail.com")
+emailent.grid(row=2, column=1, columnspan=2)
 
-plab=Label(text="Password:")
-plab.grid(row=3,column=0)
-pent=Entry(width=21)
-pent.grid(row=3, column=1,columnspan=1)
+passlab=Label(text="Password:")
+passlab.grid(row=3, column=0)
+passent=Entry(width=21)
+passent.grid(row=3, column=1, columnspan=1)
 
-genbutt=Button(window, text="Generate Password", command=test)
-genbutt.grid(row=3, column=2,columnspan=1)
+genbtn=Button(window, text="Generate Password", command=generatepassword)
+genbtn.grid(row=3, column=2, columnspan=1)
 
-addbutt=Button(text="Add", command=test)
+addbtn=Button(text="Add", command=savepassword)
 
-addbutt.grid(row=4, column=1, sticky=N)
+addbtn.grid(row=4, column=1, sticky=N)
 
 window.mainloop()
