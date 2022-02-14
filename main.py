@@ -5,9 +5,15 @@ import secrets
 # ---------------------------- PASSWORD GENERATOR ------------------------------- #
 def generatepassword():
     password=''.join(secrets.choice(string.ascii_letters+ string.digits) for _ in range(10))
-    print(password)
+    passent.insert(0,password)
 # ---------------------------- SAVE PASSWORD ------------------------------- #
-
+def savedata():
+    website=webent.get()
+    email=emailent.get()
+    password = passent.get()
+    f = open("data.txt", "a")
+    f.write(f"{website} | {email} | {password}\n")
+    f.close()
 # ---------------------------- UI SETUP ------------------------------- #
 
 window=Tk()
@@ -39,7 +45,7 @@ passent.grid(row=3, column=1, columnspan=1)
 genbtn=Button(window, text="Generate Password", command=generatepassword)
 genbtn.grid(row=3, column=2, columnspan=1)
 
-addbtn=Button(text="Add", command=savepassword)
+addbtn=Button(text="Add", command=savedata)
 
 addbtn.grid(row=4, column=1, sticky=N)
 
